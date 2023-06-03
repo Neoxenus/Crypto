@@ -1,6 +1,15 @@
 import java.math.BigInteger;
 import java.security.SecureRandom;
 
+/**
+ * 	Алгоритм виконання RSA
+ * 	1)	Обираємо прості числа:
+ * 	publicKey = 65537
+ * 	Q, P
+ * 	publicKey, N = P*Q – частини відкритого ключа
+ * 	2)	Знаходимо обернене число до publicKey за модулем за допомогою методу modInverse()
+ * 	3)	Шифруємо та розшифровуємо повідомлення за допомогою методів encrypt та decrypt відповідно
+ */
 public class RSA {
     //modulus = p * q, open for users
     private final BigInteger modulus;
