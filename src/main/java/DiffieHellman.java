@@ -1,6 +1,13 @@
 import java.math.BigInteger;
 import java.security.SecureRandom;
 
+/**
+ * Алгоритм функціонує так,
+ *  що Аліса і Боб знаючи числа
+ *  prime та base
+ *  можуть договоритись про спільний секретний ключ.
+ */
+
 public class DiffieHellman {
     private static final int bitLength; //розмір ключа
     //prime, base прості числа відомі обом користувачам

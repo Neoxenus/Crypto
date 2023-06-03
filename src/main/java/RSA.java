@@ -2,12 +2,20 @@ import java.math.BigInteger;
 import java.security.SecureRandom;
 
 public class RSA {
-    //modulus = p * q
+    //modulus = p * q, open for users
     private final BigInteger modulus;
 
     //open key, often number 65536 or 17
+    //need for encrypting of message
     private final BigInteger publicKey;
+
+
+    //secret key, need for decrypting of message
     private final BigInteger privateKey;
+
+    /*
+        (privateKey, p, q) - secret key
+     */
 
     public RSA(int bitLength) {
         SecureRandom random = new SecureRandom();
@@ -21,21 +29,21 @@ public class RSA {
 
         publicKey = new BigInteger("65537"); // Зазвичай використовуване значення
         privateKey = publicKey.modInverse(phi);
-        // privateKey - такий, що:
-        // publicKey * privateKey (mod (p-1)*(q-1)) = 1
     }
 
     public BigInteger encrypt(BigInteger message) {
-        //Шифруємо повідомлення так, що:
-        //Encrypted message = message^publicKey mod p * q
-        //
+        /*
+            Шифруємо повідомлення так, що:
+            Encrypted message = message ^ publicKey mod p * q
+         */
         return message.modPow(publicKey, modulus);
     }
 
     public BigInteger decrypt(BigInteger encryptedMessage) {
-        //Розшифровуємо повідомлення так, що:
-        //Decrypted message = encryptedMessage^privateKey mod p * q
-        //
+        /*
+            Розшифровуємо повідомлення так, що:
+            Decrypted message = encryptedMessage ^ privateKey mod p * q
+         */
         return encryptedMessage.modPow(privateKey, modulus);
     }
 
